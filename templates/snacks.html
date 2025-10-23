@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Select Extra Snacks</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="glass-box fade-in">
+    <h2>🍫 Extra Snacks</h2>
+    <p>Select any additional snacks you'd like to include in your daily plan. Calories will be added to your total.</p>
+
+    <form method="post" action="{{ url_for('snacks') }}">
+
+      <div class="snack-options">
+        {% for snack in snacks %}
+          <label>
+            <input type="checkbox" name="snack" value="{{ snack.name }}">
+            {{ snack.name }} - {{ snack.calories }} kcal
+          </label>
+        {% endfor %}
+      </div>
+
+      <br>
+
+      <button type="submit">Add Selected Snacks</button>
+
+      <a href="{{ url_for('summary') }}" class="main-btn">Skip → Summary</a>
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,360 @@
+/* =========================================
+   MODERN GLASSMORPHISM THEME - DIET RECOMMENDER
+   ========================================= */
+
+/* --- Base & Body --- */
+body {
+  font-family: 'Poppins', sans-serif;
+  /* Updated background for a deeper glass effect */
+  background: linear-gradient(135deg, #a7b7ff 0%, #dcecff 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* --- Main Container (Used by all templates) --- */
+.glass-box {
+  position: relative; /* enable pseudo-element positioning */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  padding: 40px 60px;
+  max-width: 720px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  color: #2b2b2b;
+  overflow: hidden; /* hide overflow from inner background */
+}
+
+/* Add inner background image */
+.glass-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--box-bg) center/cover no-repeat;
+  opacity: 0.25;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Keep form text above the background */
+.glass-box * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* --- Headings & Text --- */
+h2 {
+  color: #2b2b2b;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+p {
+  color: #444;
+  margin-bottom: 20px;
+}
+.summary-details .final-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #537bff;
+    margin-top: 15px;
+}
+
+/* --- Forms & Inputs --- */
+input, select {
+  padding: 12px;
+  width: 90%;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.15);
+  outline: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.5);
+  color: #2b2b2b;
+}
+input:focus, select:focus {
+  box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.3);
+}
+
+/* Checkbox specific styling for the snacks page */
+.snack-options label {
+    display: block;
+    text-align: left;
+    margin: 10px 0;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.snack-options label:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+.snack-options input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+
+/* --- Buttons (Primary Style for all actions) --- */
+button {
+  /* Matches .main-btn style */
+  margin-top: 18px;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, #79c3ff, #537bff);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(83, 123, 255, 0.4);
+}
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(83, 123, 255, 0.5);
+}
+
+/* Unified style for all navigation links acting as buttons */
+.main-btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    /* Matches primary button style */
+    margin-top: 18px;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, #79c3ff, #537bff);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(83, 123, 255, 0.4);
+}
+.main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(83, 123, 255, 0.5);
+}
+
+/* Button Group Layout */
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.button-group a {
+    margin: 10px 15px;
+}
+
+
+/* --- Result & Plan Details --- */
+.result {
+  background: rgba(255,255,255,0.4);
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.05);
+  text-align: left;
+}
+.result h3 {
+  color: #2b2b2b;
+  border-bottom: 2px solid rgba(0,0,0,0.05);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+/* Meal Plan List (result.html) */
+.ring-container {
+    background: rgba(255,255,255,0.3);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 30px auto;
+    max-width: 450px;
+    box-shadow: inset 0 0 15px rgba(83, 123, 255, 0.1);
+    text-align: left;
+}
+.ring-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+.ring-container li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+}
+.ring-container li:last-child {
+    border-bottom: none;
+}
+.ring-container b {
+    color: #537bff;
+    font-weight: 600;
+}
+/* === PROGRESS RING STYLES (summary.html) === */
+
+/* Ring Container Layout */
+.ring-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    position: relative;
+    width: 220px;
+    height: 220px;
+    background: none; /* Override result.html background for summary */
+    box-shadow: none;
+    max-width: none;
+}
+
+/* SVG Styling */
+.progress-ring {
+    transform: rotate(-90deg);
+}
+.progress-ring-bg {
+    stroke: rgba(0, 0, 0, 0.1);
+}
+.progress-ring-circle {
+    transition: stroke-dashoffset 0.5s linear;
+    stroke-linecap: round;
+}
+
+/* Percentage Text */
+.percent-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2b2b2b;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Status Message */
+.status-container {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    min-height: 20px;
+}
+.status-container.show-status {
+    opacity: 1;
+}
+.status-emoji {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+.status-text {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #f8f7f7;
+}
+
+/* Summary Snack List Styling */
+h4 {
+    color: #537bff;
+    margin-top: 30px;
+    border-bottom: 2px solid rgba(83, 123, 255, 0.2);
+    padding-bottom: 5px;
+}
+.glass-box ul {
+    list-style: none;
+    padding: 0;
+    max-width: 400px;
+    margin: 10px auto 20px auto;
+    text-align: left;
+}
+.glass-box ul li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    margin-bottom: 5px;
+    border-radius: 8px;
+    border-left: 4px solid #79c3ff;
+}
+
+/* --- Animations --- */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  .glass-box {
+    padding: 30px 20px;
+  }
+  input, select {
+    width: 100%;
+  }
+  .main-btn {
+    display: block;
+    margin-bottom: 15px;
+  }
+}
+/* === Center form contents (inputs + button) === */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px; /* spacing between inputs and button */
+}
+
+/* From Uiverse.io by Madflows */ 
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #f7f7f7;
+  background-size: 400%;
+  color: #080808;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgb(118, 168, 234) 10.8%,
+    #7fa5f1 94.3%
+  );
+  transition: all 0.475s;
+}

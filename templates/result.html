@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Diet Plan Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="glass-box fade-in">
+    <h2>🍽️ {{ name }}'s Plan — {{ goal }}</h2>
+
+    <p><b>Estimated BMR:</b> {{ bmr }} kcal</p>
+    <p><b>Target Calories:</b> {{ plan.target }} kcal</p>
+
+    <div class="ring-container">
+      <ul>
+        <li><b>Breakfast:</b> {{ plan.breakfast.name }} ({{ plan.breakfast.calories }} kcal)</li>
+        <li><b>Snack:</b> {{ plan.snack.name }} ({{ plan.snack.calories }} kcal)</li>
+        <li><b>Lunch:</b> {{ plan.lunch.name }} ({{ plan.lunch.calories }} kcal)</li>
+        <li><b>Dinner:</b> {{ plan.dinner.name }} ({{ plan.dinner.calories }} kcal)</li>
+      </ul>
+      <p><b>Meals Total:</b> {{ plan.total }} kcal</p>
+    </div>
+
+    <div class="button-group">
+        <a href="{{ url_for('snacks') }}" class="main-btn">🍫 Add Extra Snacks</a>
+        <a href="{{ url_for('index') }}" class="main-btn">🔙 Home</a>
+    </div>
+  </div>
+</body>
+</html>

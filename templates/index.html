@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diet Plan Recommender</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Inline style to set background image -->
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url("{{ url_for('static', filename='healthy_meal.jpg') }}") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-box fade-in" style="--box-bg: url('{{ url_for('static', filename='healthy_food.jpg') }}');">
+    <h2> Diet Plan Recommender</h2>
+    <p>Get a personalized meal plan!</p>
+
+    <form action="{{ url_for('diet') }}" method="POST">
+      <input type="text" name="name" placeholder="Enter your name" required><br>
+      <select name="gender" required>
+        <option value="">Select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select><br>
+      <input type="number" name="age" placeholder="Age (years)" min="1" required><br>
+      <input type="number" name="weight" placeholder="Weight (kg)" step="0.1" min="1" required><br>
+      <input type="number" name="height" placeholder="Height (cm)" step="0.1" min="1" required><br>
+
+      <select name="goal" required>
+        <option value="">Select your goal</option>
+        <option value="Maintain">Maintain</option>
+        <option value="Weight Loss">Weight Loss</option>
+        <option value="Weight Gain">Weight Gain</option>
+      </select><br>
+
+      <!-- From Uiverse.io by kamehame-ha --> 
+<button class="button" type="submit">
+  <span class="text">Generate Plan</span>
+  <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="white">
+    <path d="M5 12h14M12 5l7 7-7 7"/>
+  </svg>
+</button>
+
+    </form>
+  </div>
+</body>
+</html>
