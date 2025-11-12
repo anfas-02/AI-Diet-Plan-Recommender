@@ -4,58 +4,9 @@
   <meta charset="UTF-8">
   <title>AI Diet Summary</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script>
-    window.onload = function() {
-      const circle = document.querySelector(".progress-ring-circle");
-      const percentText = document.getElementById("progress-percent");
-      const emoji = document.getElementById("status-emoji");
-      const statusText = document.getElementById("status-text");
 
-      let total = parseInt(circle.getAttribute("data-total"));
-      let target = parseInt(circle.getAttribute("data-target"));
-      let percent = Math.min((total / target) * 100, 120); // cap at 120%
-
-      let radius = circle.r.baseVal.value;
-      let circumference = 2 * Math.PI * radius;
-
-      circle.style.strokeDasharray = `${circumference} ${circumference}`;
-      circle.style.strokeDashoffset = circumference;
-
-      const animateProgress = () => {
-        let progress = 0;
-        let interval = setInterval(() => {
-          if (progress >= percent) {
-            clearInterval(interval);
-            // determine color and message
-            let symbol = "🟩";
-            let message = "Perfect Balance!";
-            let color = "#00ff99";
-            if (percent < 80) {
-              symbol = "🟥"; message = "Too Low – Eat More!"; color = "#ff0033";
-            } else if (percent < 95) {
-              symbol = "🟧"; message = "Slightly Below Target"; color = "#ff9900";
-            } else if (percent > 105) {
-              symbol = "🟦"; message = "Above Target – Reduce Intake"; color = "#3399ff";
-            }
-
-            circle.style.stroke = color;
-            emoji.innerText = symbol;
-            statusText.innerText = message;
-            document.querySelector(".status-container").classList.add("show-status");
-          } else {
-            progress++;
-            const offset = circumference - (progress / 100) * circumference;
-            circle.style.strokeDashoffset = offset;
-            percentText.textContent = Math.round(progress) + "%";
-          }
-        }, 12);
-      };
-
-      animateProgress();
-    };
-  </script>
 </head>
-<body>
+<body class="summary-page">
   <div class="glass-box fade-in">
     <h2>🤖 AI Diet Summary for {{ name }}</h2>
     <p>Your adjusted plan, including extra snacks, is complete!</p>
@@ -74,41 +25,28 @@
     </div>
 
     <div class="result">
-        <h3>Full Meal Breakdown</h3>
+        <h3>Complete Meal Plan</h3>
         <ul>
             <li>🍽️ Breakfast: {{ plan.breakfast.name }} ({{ plan.breakfast.calories }} kcal)</li>
             <li>🍽️ Lunch: {{ plan.lunch.name }} ({{ plan.lunch.calories }} kcal)</li>
             <li>🍽️ Dinner: {{ plan.dinner.name }} ({{ plan.dinner.calories }} kcal)</li>
-            <li>🍎 Base Snack:{{ plan.snack.name }} ({{ plan.snack.calories }} kcal)</li>
+            <li>🍎 Base Snack: {{ plan.snack.name }} ({{ plan.snack.calories }} kcal)</li>
         </ul>
+        
+        <h4>🍫 Extra Snacks Added:</h4>
+        {% if selected_snacks %}
+          <ul>
+            {% for snack in selected_snacks %}
+              <li>{{ snack }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No extra snacks were selected.</p>
+        {% endif %}
     </div>
-
-    <div class="ring-container">
-      <svg class="progress-ring" width="220" height="220">
-        <circle class="progress-ring-bg" stroke="#222" stroke-width="10" fill="transparent" r="90" cx="110" cy="110"/>
-        <circle class="progress-ring-circle" stroke="#00ff99" stroke-width="10" fill="transparent" r="90" cx="110" cy="110"
-                data-total="{{ total }}" data-target="{{ plan.target }}"/>
-      </svg>
-      <div id="progress-percent" class="percent-text">0%</div>
-    </div>
-
-    <div class="status-container">
-      <span id="status-emoji" class="status-emoji"></span>
-      <span id="status-text" class="status-text"></span>
-    </div>
-
-    <h4>🍫 Extra Snacks Added:</h4>
-    {% if selected_snacks %}
-      <ul>
-        {% for snack in selected_snacks %}
-          <li>{{ snack }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No extra snacks were selected.</p>
-    {% endif %}
 
     <div class="button-group">
+        <a href="{{ url_for('snacks') }}" class="main-btn">⬅️ Back to Snacks</a>
         <a href="{{ url_for('index') }}" class="main-btn">🔙 Start a New Plan</a>
     </div>
   </div>
