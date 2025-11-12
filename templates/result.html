@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Diet Plan Result</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+
+<body class="result-page">
   <div class="glass-box fade-in">
     <h2>🍽️ {{ name }}'s Plan — {{ goal }}</h2>
 
@@ -23,8 +24,8 @@
     </div>
 
     <div class="button-group">
-        <a href="{{ url_for('snacks') }}" class="main-btn">🍫 Add Extra Snacks</a>
-        <a href="{{ url_for('index') }}" class="main-btn">🔙 Home</a>
+      <a href="{{ url_for('snacks') }}" class="main-btn">🍫 Add Extra Snacks</a>
+      <a href="{{ url_for('index') }}" class="main-btn">🔙 Home</a>
     </div>
   </div>
 </body>
